@@ -1,7 +1,7 @@
 # hackapk
-An Advanced Tool For Complete Apk-Modding In Termux ...
+_An Advanced Tool For Complete Apk-Modding In Termux ..._
 
-**What Can You Do With 'hackapk'**: Well, You Can...
+**What Can You Do With _'hackapk'_** - Well, You Can...
  
 - Decompile An Apk
 - Recompile An Apk
@@ -25,9 +25,10 @@ $ cd hackapk
 $ chmod +x setup
 $ ./setup
 ```
-And... Done, 'hackapk' successfully installed in your termux.
-Here are some previews...
+And... Done, _'hackapk'_ successfully installed in your termux.
 
+## WorkFlow
+Here are some previews...
 
 ![preview1](https://github.com/adi1090x/Just_Files/blob/master/PHA_1.png) <br />
 
