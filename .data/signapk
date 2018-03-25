@@ -1,0 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+export LD_PRELOAD=
+export LD_LIBRARY_PATH=/data/data/com.termux/files/home/hackapk/.data/binaries/lib/arm:/data/data/com.termux/files/home/hackapk/.data/binaries/lib/arm/jli:$LD_LIBRARY_PATH
+umask 000
+cd $HOME/hackapk/.data/binaries
+
+/data/data/com.termux/files/home/hackapk/.data/binaries/java -Xmx1024m -jar /data/data/com.termux/files/home/hackapk/.data/binaries/signapk.jar /data/data/com.termux/files/home/hackapk/.data/binaries/publickey.x509.pem /data/data/com.termux/files/home/hackapk/.data/binaries/publickey.pk8 "$@" 
+

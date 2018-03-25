@@ -1,0 +1,84 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+## Colors
+C='\033[1;36m'
+G='\033[1;32m'
+R='\033[1;31m'
+Y='\033[1;33m'
+B='\033[1;34m'
+P='\033[1;35m'
+RE='\033[0m'
+
+DIR=$HOME/hackapk
+MSFPATH="$HOME/metasploit-framework"
+
+mv $MSFPATH/lib/msf/core/payload/apk.rb $MSFPATH/lib/msf/core/payload/apk.rb.original
+cp $DIR/.data/apk.rb $MSFPATH/lib/msf/core/payload/apk.rb
+
+clear
+echo
+echo -e $Y" [*] Setting Up Program ..."$C
+echo
+chmod 777 $DIR/.data/binaries/lib/libld.so
+chmod +x $DIR/.data/apktool
+chmod +x $DIR/hackapk
+chmod +x $DIR/.data/signapk
+chmod 777 $DIR/.data/binaries/java
+chmod 777 $DIR/.data/binaries/bin/java
+chmod 777 $DIR/.data/binaries/bin/keytool
+
+if [ ! -d $DIR/decompiler ]; then
+mkdir $DIR/decompiler
+fi
+
+if [ ! -d $DIR/frameworks ]; then
+mkdir $DIR/frameworks
+fi
+
+if [ ! -d $DIR/recompiler ]; then
+mkdir $DIR/recompiler
+fi
+
+if [ ! -d $DIR/signed ]; then
+mkdir $DIR/signed
+fi
+
+if [ ! -d $DIR/unsigned ]; then
+mkdir $DIR/unsigned
+fi
+
+if [ ! -d $DIR/zipalign ]; then
+mkdir $DIR/zipalign
+fi
+
+if [ ! -d $DIR/final ]; then
+mkdir $DIR/final
+fi
+
+if [ ! -d $DIR/script ]; then
+mkdir $DIR/script
+fi
+
+if [ ! -d $DIR/payload ]; then
+mkdir $DIR/payload
+fi
+
+if [ -L $PREFIX/bin/hackapk ]; then
+rm $PREFIX/bin/hackapk
+fi
+
+if [ -L $PREFIX/bin/apktool ]; then
+rm $PREFIX/bin/apktool
+fi
+
+ln -s $DIR/hackapk $PREFIX/bin/
+ln -s $DIR/.data/apktool $PREFIX/bin/
+ln -s $DIR/.data/binaries/java $PREFIX/bin/
+
+echo
+echo -e $G" [*] DONE!"
+sleep 1
+echo
+echo -e $R" [*] Now You Can Run HackApk."
+echo
+

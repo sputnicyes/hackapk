@@ -1,0 +1,7 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+export LD_LIBRARY_PATH=$HOME/hackapk/.data/binaries/lib/arm:$LD_LIBRARY_PATH
+umask 000
+cd $HOME/hackapk/.data/binaries
+exec $HOME/hackapk/.data/binaries/java -Xmx1024m -Djava.io.tmpdir=$HOME/hackapk/ -jar $HOME/hackapk/.data/binaries/apktool-2.2.2.jar -p $HOME/hackapk/ "$@"
+

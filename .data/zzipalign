@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+export LD_LIBRARY_PATH=$HOME/hackapk/.data/binaries/lib/arm:$LD_LIBRARY_PATH
+exec $HOME/hackapk/.data/binaries/bin/zipalign
