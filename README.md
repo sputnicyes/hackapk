@@ -26,6 +26,7 @@ $ chmod +x setup
 $ ./setup
 ```
 And... Done, _'hackapk'_ successfully installed in your termux.
+**Note:** By Default, _'hackapk'_ only works inside the _"HOME(/data/data/com.termux/files/home)"_ directory.
 
 ## WorkFlow
 Here are some previews...
